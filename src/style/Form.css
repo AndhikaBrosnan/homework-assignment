@@ -1,0 +1,9 @@
+.form-input {
+  margin-top: 3%;
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
