@@ -6,7 +6,7 @@ const Navbar = () => {
     <div className="ui secondary menu">
       <div className="right menu">
         <Link to="/" className="ui item">
-          Hi, Brosnan 😁
+          <b>Hi, Customer </b>😁
         </Link>
       </div>
     </div>

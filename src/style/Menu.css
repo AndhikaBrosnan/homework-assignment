@@ -18,3 +18,53 @@
 .demo-item {
   height: 110px;
 }
+
+.slick-prev:before,
+.slick-next:before {
+  color: gray;
+}
+
+.banner {
+  object-fit: cover;
+  width: 100vw;
+  height: 70vh;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1%;
+}
+
+.balance {
+  height: 4vh;
+}
+
+.empty-space {
+  padding-bottom: 2%;
+}
+
+.total {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+#footer {
+  position: fixed;
+  bottom: 2%;
+  width: 100%;
+
+  display: -webkit-flex;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+.left {
+  margin-left: 3%;
+  margin-right: auto;
+}
