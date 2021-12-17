@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../style/Form.css";
 import { Dropdown } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { postFormData } from "../../redux/action/form";
+import { useDispatch } from "react-redux";
 
 const Form = () => {
   const friendOptions = [
@@ -57,9 +59,19 @@ const Form = () => {
     },
   ];
 
-  // const [nickName, setNickname] = useState("");
-  // const [table, setTable] = useState("");
-  // const [email, setEmail] = useState("");
+  const [nickName, setNickname] = useState("");
+  const [table, setTable] = useState("");
+  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  const allowSubmit = !nickName && !table && !email ? "disabled" : null;
+
+  const onSubmitHandle = () => {
+    postFormData(dispatch, nickName, table, email);
+    history.push("/menu");
+  };
 
   return (
     <div className="ui container" style={{ padding: "10%" }}>
@@ -69,7 +81,11 @@ const Form = () => {
           <div className="left aligned description">
             <div className="form-input">
               <div className="ui input" style={{ width: "100%" }}>
-                <input type="text" placeholder="Nick Name*" />
+                <input
+                  type="text"
+                  placeholder="Nick Name*"
+                  onChange={(e) => setNickname(e.target.value)}
+                />
               </div>
             </div>
             <div className="form-input">
@@ -78,6 +94,7 @@ const Form = () => {
                 fluid
                 selection
                 options={friendOptions}
+                onChange={(e) => setTable(e.target.value)}
               />
             </div>
             <div className="form-input">
@@ -86,6 +103,7 @@ const Form = () => {
                   type="text"
                   style={{ width: "100%" }}
                   placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -95,9 +113,13 @@ const Form = () => {
           <div className="actions">
             <button className="ui secondary button">Clear</button>
             <span className="primary-btns">
-              <Link to="/menu">
-                <button className="ui blue button">Submit</button>
-              </Link>
+              <button
+                onClick={onSubmitHandle}
+                disabled={allowSubmit}
+                className="ui blue button"
+              >
+                Submit
+              </button>
             </span>
           </div>
         </div>
