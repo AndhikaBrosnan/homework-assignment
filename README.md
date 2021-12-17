@@ -16,3 +16,4 @@
 - axios
 - React Router
 - redux thunk
+- Semantic UI React
