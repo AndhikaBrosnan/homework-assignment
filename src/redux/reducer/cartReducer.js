@@ -5,7 +5,7 @@ const INITIAL_CART = [];
 const cartReducer = (cart = INITIAL_CART, action) => {
   switch (action.type) {
     case FETCH_CART:
-      return [...cart, ...action.payload];
+      return action.payload;
     default:
       return cart;
   }

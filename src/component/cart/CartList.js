@@ -1,22 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
 import "../../style/Cart.css";
 import { Link } from "react-router-dom";
 import { Button, Image, Modal, Grid } from "semantic-ui-react";
+import { useDispatch, useSelector } from "react-redux";
+import fetchCartData from "../../redux/action/cart";
 
 const CartList = () => {
   const [open, setOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetchCartData(dispatch); // eslint-disable-next-line
+  }, []);
+
+  const cart = useSelector((state) => state.cart);
+
+  const renderCart = cart[0]
+    ? cart[0].checkout_details.map((item, index) => {
+        return (
+          <Cart
+            key={index}
+            menu={item.menu}
+            price={item.price}
+            note={item.note}
+          />
+        );
+      })
+    : null;
 
   return (
     <div>
       <div className="ui container">
         <h1>Order Detail</h1>
-        <div className="ui cards">
-          <Cart />
-          <Cart />
-          <Cart />
-          <Cart />
-        </div>
+        <div className="ui cards">{renderCart}</div>
         <div className="addmore">
           <Link to="/menu">
             <button className="ui basic button">
