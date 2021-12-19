@@ -6,7 +6,18 @@ export const fetchMenu = async () => {
     return response.data;
   } catch (err) {
     return {
-      message: "Fetch Menu Data",
+      message: "Fetch Menu Data Failed",
+    };
+  }
+};
+
+export const fetchCart = async () => {
+  try {
+    const response = await apiBackend.get("/checkoutDetail");
+    return response.data;
+  } catch (err) {
+    return {
+      message: "FETCH cart FAILED",
     };
   }
 };

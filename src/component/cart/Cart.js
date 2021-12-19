@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Cart = () => {
+const Cart = ({ menu, price, note }) => {
+  const [cartNote, setCartNote] = useState("");
+
+  useEffect(() => {
+    setCartNote(note); // eslint-disable-next-line
+  }, []);
+
   return (
     <div className="card" style={{ width: "100%" }}>
       <div className="content">
@@ -9,8 +15,8 @@ const Cart = () => {
           className="left floated small ui image"
           src="https://semantic-ui.com/images/avatar2/large/molly.png"
         />
-        <div className="header">Elliot Fu</div>
-        <div className="meta">Friends of Veronika</div>
+        <div className="header">{menu}</div>
+        <div className="meta">Rp. {price},-</div>
 
         <div className="right floated">
           <div className="ui buttons">
@@ -27,7 +33,12 @@ const Cart = () => {
       <div className="extra content">
         <h4>Catatan untuk Black Party (Ice)</h4>
         <div className="ui large transparent input">
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={(e) => setCartNote(e.target.value)}
+            value={cartNote}
+          />
         </div>
       </div>
     </div>

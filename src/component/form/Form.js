@@ -73,6 +73,12 @@ const Form = () => {
     history.push("/menu");
   };
 
+  const onClearHandle = () => {
+    setEmail("");
+    setNickname("");
+    setTable("");
+  };
+
   return (
     <div className="ui container" style={{ padding: "10%" }}>
       <div className="ui card" style={{ width: "100%" }}>
@@ -84,6 +90,7 @@ const Form = () => {
                 <input
                   type="text"
                   placeholder="Nick Name*"
+                  value={nickName}
                   onChange={(e) => setNickname(e.target.value)}
                 />
               </div>
@@ -93,6 +100,7 @@ const Form = () => {
                 placeholder="Select Table"
                 fluid
                 selection
+                value={table}
                 options={friendOptions}
                 onChange={(e) => setTable(e.target.value)}
               />
@@ -103,6 +111,7 @@ const Form = () => {
                   type="text"
                   style={{ width: "100%" }}
                   placeholder="Email"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -111,7 +120,9 @@ const Form = () => {
         </div>
         <div className="extra content">
           <div className="actions">
-            <button className="ui secondary button">Clear</button>
+            <button className="ui secondary button" onClick={onClearHandle}>
+              Clear
+            </button>
             <span className="primary-btns">
               <button
                 onClick={onSubmitHandle}
